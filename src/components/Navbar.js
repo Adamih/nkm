@@ -8,22 +8,26 @@ import pages, {defaultPage} from "../Pages-enum"
 const _left_list = [
     {
         id: pages.HOME, title: {
-            se: "Hem"
+            se: "Hem",
+            en: "Home"
         }
     },
     {
         id: pages.SCHEDULE, title: {
-            se: "Schema"
+            se: "Schema",
+            en: "Schedule"
         }
     },
     {
         id: pages.KM, title: {
-            se: "Klubbmästeriet"
+            se: "Klubbmästeriet",
+            en: "About us"
         }
     },
     {
         id: pages.CONTACT, title: {
-            se: "Kontakt"
+            se: "Kontakt",
+            en: "Contact"
         }
     },
 ];
@@ -31,7 +35,8 @@ const _left_list = [
 const _right_list = [
     {
         id: pages.LOGIN, title: {
-            se: "Logga in"
+            se: "Logga in",
+            en: "Log in"
         }
     },
 ];
