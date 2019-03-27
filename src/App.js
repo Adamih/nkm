@@ -8,6 +8,7 @@ import Schedule from './content/Schedule';
 import Login from './content/Login';
 import {Route, Switch} from 'react-router';
 import pages from './Pages-enum'
+import KM from "./content/KM";
 
 class App extends Component {
     render() {
@@ -19,6 +20,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path={"/"+pages.HOME} component={Home}/>
                     <Route exact path={"/"+pages.SCHEDULE} component={Schedule}/>
+                    <Route exact path={"/"+pages.KM} component={KM}/>
                     <Route exact path={"/"+pages.LOGIN} component={Login}/>
                     <Route component={Home}/>
                 </Switch>
