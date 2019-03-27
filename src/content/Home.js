@@ -15,7 +15,7 @@ class Home extends Component {
         return (
             <Container>
                 <div onClick={() => this.setState ({ isFlipped: !this.state.isFlipped })}>
-                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection   ="horizontal">
+                    <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
                         <img src={logo} className="home-shield" alt="logo" key="front" />
                         <img src={logo} className="home-shield" alt="logo" key="back" />
                     </ReactCardFlip>
