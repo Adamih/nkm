@@ -5,7 +5,6 @@ import bg from './images/bg.jpg';
 import Home from './content/Home';
 import Navbar from './components/Navbar';
 import Schedule from './content/Schedule';
-import KM from './content/KM'
 import Login from './content/Login';
 import {Route, Switch} from 'react-router';
 import pages from './Pages-enum'
@@ -20,7 +19,6 @@ class App extends Component {
                 <Switch>
                     <Route exact path={"/"+pages.HOME} component={Home}/>
                     <Route exact path={"/"+pages.SCHEDULE} component={Schedule}/>
-                    <Route exact path={"/"+pages.KM} component={KM}/>
                     <Route exact path={"/"+pages.LOGIN} component={Login}/>
                     <Route component={Home}/>
                 </Switch>
