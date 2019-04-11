@@ -7,3 +7,5 @@ flask_sqlalchemy
 flask_marshmallow
 marshmallow-sqlalchemy
 SQLAlchemy-ImageAttach
+ipdb
+psycopg2
