@@ -6,6 +6,13 @@ ma = Marshmallow()
 db = SQLAlchemy()
 
 
+def initialize_db(app):
+    app.app_context().push()
+    db.init_app(app)
+    db.drop_all()
+    db.create_all()
+
+
 class User(db.Model):
     __tablename__ = 'user'
 

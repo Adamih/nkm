@@ -15,13 +15,23 @@ def create_app():
     from app.App import api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
 
-    from app.Model import db
+    from app.Model import db, initialize_db
     db.init_app(app)
+
+    initialize_db(app)
 
     return app
 
 
 if __name__ == "__main__":
     app = create_app()
+
+    from app.Model import User, db
+
+    adam = User("Adam Henriksson", "Pubmästare")
+    oliver = User("Oliver Jensen", "Klubbmästare")
+    db.session.add(adam)
+    db.session.add(oliver)
+    db.session.commit()
 
     app.run(host='0.0.0.0', debug=True)
