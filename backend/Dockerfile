@@ -11,5 +11,3 @@ COPY requirements.pip .
 # Install Python dependencies
 
 RUN pip install -r requirements.pip
-
-# We copy the rest of the codebase into the image
