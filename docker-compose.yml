@@ -1,7 +1,9 @@
-version: "2"
+version: "3.6"
 services:
   frontend:
     build: frontend
+    env_file:
+      - .env
     volumes:
       - ./frontend:/code
     working_dir: /code

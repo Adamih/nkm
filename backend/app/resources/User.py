@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import request
 from flask_restful import Resource
 from .. import Model
 
@@ -9,9 +9,10 @@ users_schema = Model.UserSchema(many=True)
 
 class UserResource(Resource):
     def get(self):
-        people = Model.User.query.all()
-        people = users_schema.dump(people).data
-        return {'status': 'success', 'data': people}, 200
+        users = Model.User.query.all()
+        users = users_schema.dump(users).data
+
+        return {'status': 'success', 'data': users}, 200
 
     def post(self):
         json_data = request.get_json(force=True)
@@ -23,7 +24,8 @@ class UserResource(Resource):
             return errors, 422
 
         user = Model.User(
-            user_name=json_data['user_name'],
+            username=json_data['username'],
+            password=json_data['password'],
             full_name=json_data['full_name'],
             title=json_data['title']
         )
@@ -43,20 +45,16 @@ class UserResource(Resource):
         if errors:
             return errors, 422
 
-        if 'id' not in json_data:
-            user = Model.User.query.filter_by(user_name=json_data['user_name']).first()
-        else:
-            user = Model.User.query.filter_by(id=json_data['id']).first()
+        user = Model.User.query.filter_by(id=json_data['id']).first()
 
         if not user:
             return {'message': 'Person does not exist'}, 400
 
-        if 'full_name' in data:
-            user.full_name = data['full_name']
-        if 'email' in data:
-            user.email = data['email']
-        if 'title' in data:
-            user.title = data['title']
+        # TODO: This needs to only edit info that is supplied. AKA: Check if it is set before
+        user.username = data['username']
+        user.password = data['password']
+        user.full_name = data['full_name']
+        user.title = data['title']
 
         Model.db.session.commit()
 
@@ -73,10 +71,7 @@ class UserResource(Resource):
         if errors:
             return errors, 422
 
-        if 'id' not in data:
-            category = Model.User.query.filter_by(user_name=data['user_name']).delete()
-        else:
-            category = Model.User.query.filter_by(id=data['id']).delete()
+        category = Model.User.query.filter_by(id=data['id']).delete()
 
         Model.db.session.commit()
 

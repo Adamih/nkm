@@ -17,16 +17,22 @@ class User(db.Model):
     __tablename__ = 'user'
 
     # Totally required on registration
-    id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(50), nullable=False)
-    title = db.Column(db.String(20), nullable=False)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String, primary_key=True)
+    password = db.Column(db.String, nullable=False)
+    full_name = db.Column(db.String, nullable=False)
+    title = db.Column(db.String, nullable=False)
 
-    def __init__(self, full_name, title):
+    def __init__(self, full_name, title, username, password):
+        self.username = username
+        self.password = password
         self.full_name = full_name
         self.title = title
 
 
 class UserSchema(ma.Schema):
     id = fields.Integer()
+    username = fields.String(required=True)
+    password = fields.String(required=True)
     full_name = fields.String(required=True)
     title = fields.String(required=True)

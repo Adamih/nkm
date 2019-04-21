@@ -24,14 +24,16 @@ def create_app():
 
 
 if __name__ == "__main__":
+    # Initializing flask app
     app = create_app()
 
+    # --- This is just for initializing testing values ---
     from app.Model import User, db
 
-    adam = User("Adam Henriksson", "Pubmästare")
-    oliver = User("Oliver Jensen", "Klubbmästare")
+    adam = User("adahen", "pass", "Adam Henriksson", "Pubmästare")
     db.session.add(adam)
-    db.session.add(oliver)
     db.session.commit()
+    # ---
 
+    # Start server
     app.run(host='0.0.0.0', debug=True)
