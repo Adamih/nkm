@@ -3,7 +3,7 @@ import '../css/Home.css';
 import Container from "react-bootstrap/Container";
 
 
-function Contact() {
+const Contact = () => {
     return (
         <Container>
             <div>
@@ -11,6 +11,6 @@ function Contact() {
             </div>
         </Container>
     )
-}
+};
 
 export default Contact

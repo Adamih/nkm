@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 
-const Login = React.memo(() => {
+const Login = () => {
     return (
         <Container>
             <Row>
@@ -39,6 +39,6 @@ const Login = React.memo(() => {
             </Row>
         </Container>
     )
-});
+};
 
 export default Login
