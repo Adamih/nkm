@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import './css/App.css';
 
 import bg from './images/bg.jpg';
@@ -10,25 +10,44 @@ import {Route, Switch} from 'react-router';
 import pages from './Pages-enum'
 import KM from "./content/KM";
 import Contact from "./content/Contact";
+import axios from "axios";
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <img src={bg} id={"bg"} alt={"Background"}/>
-                <Navbar onSelect={(id) => this.setState({page: id})}/>
+const App = () => {
+    const [loadingUsers, setLoadingUsers] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [page, setPage] = useState(null);
 
-                <Switch>
-                    <Route exact path={"/"+pages.HOME} component={Home}/>
-                    <Route exact path={"/"+pages.SCHEDULE} component={Schedule}/>
-                    <Route exact path={"/"+pages.KM} component={KM}/>
-                    <Route exact path={"/"+pages.LOGIN} component={Login}/>
-                    <Route exact path={"/"+pages.CONTACT} component={Contact}/>}
-                    <Route component={Home}/>
-                </Switch>
-            </div>
-        )
-    }
-}
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                setLoadingUsers(true);
+                const res = await axios.get("http://172.17.0.1:5000/api/user");
+                console.log("user:", res);
+                setUsers(res.data.data);
+                setLoadingUsers(false)
+            } catch (e) {
+                console.log("error:", e)
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    return (
+        <div className="App">
+            <img src={bg} id={"bg"} alt={"Background"}/>
+            <Navbar onSelect={(id) => setPage(id)} />
+
+            <Switch>
+                <Route exact path={"/"+pages.HOME} render={() => <Home/>}/>
+                <Route exact path={"/"+pages.SCHEDULE} render={() => <Schedule/>}/>
+                <Route exact path={"/"+pages.KM} render={() => <KM loadingUsers={loadingUsers} users={users} />} />
+                <Route exact path={"/"+pages.LOGIN} render={() => <Login/>}/>
+                <Route exact path={"/"+pages.CONTACT} render={() => <Contact/>}/>}
+                <Route component={Home}/>
+            </Switch>
+        </div>
+    )
+};
 
 export default App;

@@ -31,7 +31,9 @@ if __name__ == "__main__":
     from app.Model import User, db
 
     adam = User("adahen", "pass", "Adam Henriksson", "Pubmästare")
+    solo = User("solo", "fernet123", "Alexander Westman", "General")
     db.session.add(adam)
+    db.session.add(solo)
     db.session.commit()
     # ---
 

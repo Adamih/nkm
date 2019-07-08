@@ -23,7 +23,7 @@ class User(db.Model):
     full_name = db.Column(db.String, nullable=False)
     title = db.Column(db.String, nullable=False)
 
-    def __init__(self, full_name, title, username, password):
+    def __init__(self, username, password, full_name, title):
         self.username = username
         self.password = password
         self.full_name = full_name

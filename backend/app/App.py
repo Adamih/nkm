@@ -23,4 +23,3 @@ def login():
 
 
 api.add_resource(UserResource, '/user')
-api.add_resource(UserResource, '/user/<user_id>')
