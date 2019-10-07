@@ -10,29 +10,3 @@ services:
     ports:
       - 3000:3000
     command: npm start
-
-  backend:
-    restart: always
-    env_file:
-      - .env
-    build: backend
-    ports:
-      - 5000:5000
-    volumes:
-      - ./backend:/code
-    working_dir: /code
-    command: python Run.py
-
-  postgres:
-    image: postgres
-    environment:
-      - "${POSTGRES_PASSWORD}"
-    ports:
-      - 5432:5432
-
-  pgadmin:
-    image: dpage/pgadmin4
-    env_file:
-      - .env
-    ports:
-      - 5050:80
