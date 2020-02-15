@@ -1,5 +1,3 @@
-# Note, not finished! Master should build just alright though
-
 ## Init
 
 ### Database & SQLAlchemy
